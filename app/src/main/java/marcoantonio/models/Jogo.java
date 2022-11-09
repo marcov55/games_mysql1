@@ -1,10 +1,24 @@
 package marcoantonio.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+
+@Entity
+@Table(name="jogos")
 public class Jogo {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String titulo;
     
-    private int idGenero;
+    @ManyToOne
+    @JoinColumn(name="id_genero")
+    private Genero genero;
 
     public void setId(int id) {
         this.id = id;
@@ -20,10 +34,10 @@ public class Jogo {
         return this.titulo;
     }
 
-    public void setIdGenero(int idGenero) {
-        this.idGenero = idGenero;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
-    public int getIdGenero() {
-        return this.idGenero;
+    public Genero getGenero() {
+        return this.genero;
     }
 }
